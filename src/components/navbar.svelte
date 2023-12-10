@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import Link from "./link.svelte";
   let lastScrollY: number = 0;
   let navbarVisible: boolean = true;
   export let navColor = "transparent";
@@ -11,17 +12,17 @@
   };
 
   onMount(() => {
-  const intersectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        navColor = "transparent";
-      } else {
-        navColor = "var(--color-nav)";
-      }
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          navColor = "transparent";
+        } else {
+          navColor = "var(--color-nav)";
+        }
+      });
     });
-  });
-  const target = document.querySelector("#services");
-  intersectionObserver.observe(target!);
+    const target = document.querySelector("#features");
+    intersectionObserver.observe(target!);
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -34,25 +35,22 @@
 <nav style="background-color: {navColor}" class="navbar" class:hidden={!navbarVisible}>
   <div class="nav-content">
     <div class="nav-brand">
-	    <div style="width:50px;height:50px;overflow: hidden;border-radius:50px;background:#042539;padding:2px">
-        <img
-          src="logo.png"
-          alt="logo"
-          style="width:100%;height:100%;object-fit:cover;"
-        />
+      <div
+        style="width:50px;height:50px;overflow: hidden;border-radius:50px;background:#042539;padding:2px"
+      >
+        <img src="logo.png" alt="logo" style="width:100%;height:100%;object-fit:cover;" />
       </div>
       <div>AudioRescue</div>
     </div>
     <ul class="nav-links">
-      <li><a href="#services" class="nav-link">Services</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><Link href="#services">Services</Link></li>
+      <li><Link href="#about">About</Link></li>
+      <li><Link href="#contact">Contact</Link></li>
     </ul>
   </div>
 </nav>
 
 <style>
-
   .navbar {
     position: fixed;
     top: 0;
@@ -98,16 +96,6 @@
 
   .nav-links li {
     padding: 0.5rem;
-  }
-
-  .nav-link {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s ease;
-  }
-
-  .nav-link:hover {
-    color: #007bff;
   }
 
   @media (max-width: 768px) {

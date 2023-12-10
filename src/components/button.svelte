@@ -71,7 +71,7 @@
 
   .button:hover:not([aria-disabled="true"]) {
     background-color: #1a1a1a;
-    outline: 2px solid var(--color-hover);
+    outline: 2px solid rgba(var(--color-primary), 0.5);
     color: black;
   }
 
@@ -104,7 +104,7 @@
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
-    background-color: var(--color-primary);
+    background-color: rgb(var(--color-primary));
     transform-origin: center;
     transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
     transition: transform 0.3s ease-in-out;
